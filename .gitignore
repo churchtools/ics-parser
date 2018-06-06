@@ -49,3 +49,4 @@ vendor
 # Custom #
 ##########
 *-report.*
+.idea
