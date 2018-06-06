@@ -142,6 +142,25 @@ class RecurrencesTest extends TestCase
       $checks);
   }
 
+  /**
+   * @runInSeparateProcess
+   */
+  public function testRFCDaily10BerlinFromNewYork() {
+    // (1997 9:00 AM CEST)September 2-11
+    $checks = [
+      ['index' => 0, 'dateString' => '19970902T090000', 'timezone' => 'Europe/Berlin', 'message' => '1st event, CEST: '],
+      ['index' => 1, 'dateString' => '19970903T090000', 'timezone' => 'Europe/Berlin', 'message' => '2nd event, CEST: '],
+      ['index' => 9, 'dateString' => '19970911T090000', 'timezone' => 'Europe/Berlin', 'message' => '10th event, CEST: '],
+    ];
+    $this->assertVEVENT(
+      'America/New_York',
+      "DTSTART;TZID=Europe/Berlin:19970902T090000",
+      "",
+      "RRULE:FREQ=DAILY;COUNT=10",
+      10,
+      $checks);
+  }
+
   /* ********************************************************************************************* */
 
   function assertVEVENT($defaultTimezone, $dtstart, $dtend, $rrule, $count, $checks) {
