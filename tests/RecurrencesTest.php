@@ -228,8 +228,6 @@ class RecurrencesTest extends TestCase
     $this->assertCount($count, $events);
 
     foreach($checks as $check) {
-      echo $events[$check['index']]->dtstart_array[2].PHP_EOL;
-
       $this->assertEvent($events[$check['index']], $check['dateString'], $check['message'], isset($check['timezone']) ? $check['timezone'] : $defaultTimezone);
     }
   }
