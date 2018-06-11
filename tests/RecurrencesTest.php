@@ -31,16 +31,50 @@ class RecurrencesTest extends TestCase
    */
   public function testMonthlyFullDayTimeZoneBerlin() {
     $checks = [
-      ['index' => 0, 'dateString' => '20000305', 'message' => '1st event, CET: '],
-      ['index' => 1, 'dateString' => '20000405T000000', 'message' => '2nd event, CEST: '],
-      ['index' => 2, 'dateString' => '20000505T000000', 'message' => '3rd event, CEST: '],
+      ['index' => 0, 'dateString' => '20000301', 'message' => '1st event, CET: '],
+      ['index' => 1, 'dateString' => '20000401T000000', 'message' => '2nd event, CEST: '],
+      ['index' => 2, 'dateString' => '20000501T000000', 'message' => '3rd event, CEST: '],
     ];
     $this->assertVEVENT(
       'Europe/Berlin',
-      "DTSTART;VALUE=DATE:20000305",
-      "DTEND;VALUE=DATE:20000306",
-      "RRULE:FREQ=MONTHLY;BYMONTHDAY=5;WKST=SU;COUNT=3",
+      "DTSTART;VALUE=DATE:20000301",
+      "DTEND;VALUE=DATE:20000302",
+      "RRULE:FREQ=MONTHLY;BYMONTHDAY=1;WKST=SU;COUNT=3",
       3,
+      $checks);
+  }
+
+  /**
+   * @runInSeparateProcess
+   */
+  public function testMonthlyFullDayTimeZoneBerlinSummerTime() {
+    $checks = [
+      ['index' => 0, 'dateString' => '20180701', 'message' => '1st event, CEST: '],
+      ['index' => 1, 'dateString' => '20180801T000000', 'message' => '2nd event, CEST: '],
+      ['index' => 2, 'dateString' => '20180901T000000', 'message' => '3rd event, CEST: '],
+    ];
+    $this->assertVEVENT(
+      'Europe/Berlin',
+      "DTSTART;VALUE=DATE:20180701",
+      "DTEND;VALUE=DATE:20180702",
+      "RRULE:FREQ=MONTHLY;BYMONTHDAY=1;WKST=SU;COUNT=3",
+      3,
+      $checks);
+  }
+
+  /**
+   * @runInSeparateProcess
+   */
+  public function testMonthlyFullDayTimeZoneBerlinFromFile() {
+    $checks = [
+      ['index' => 0, 'dateString' => '20180701', 'message' => '1st event, CEST: '],
+      ['index' => 1, 'dateString' => '20180801T000000', 'message' => '2nd event, CEST: '],
+      ['index' => 2, 'dateString' => '20180901T000000', 'message' => '3rd event, CEST: '],
+    ];
+    $this->assertEventFile(
+      'Europe/Berlin',
+      "./tests/icalmonthly.txt",
+      24,
       $checks);
   }
 
@@ -179,6 +213,22 @@ class RecurrencesTest extends TestCase
 
     foreach($checks as $check) {
       //echo $events[$check['index']]->dtstart_array[3].PHP_EOL;
+
+      $this->assertEvent($events[$check['index']], $check['dateString'], $check['message'], isset($check['timezone']) ? $check['timezone'] : $defaultTimezone);
+    }
+  }
+
+  function assertEventFile($defaultTimezone, $file, $count, $checks) {
+    $options = $this->getOptions($defaultTimezone);
+
+    $ical = new ICal($file, $options);
+
+    $events = $ical->events();
+
+    $this->assertCount($count, $events);
+
+    foreach($checks as $check) {
+      echo $events[$check['index']]->dtstart_array[2].PHP_EOL;
 
       $this->assertEvent($events[$check['index']], $check['dateString'], $check['message'], isset($check['timezone']) ? $check['timezone'] : $defaultTimezone);
     }
