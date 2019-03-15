@@ -12,11 +12,11 @@ class RecurrencesTest extends TestCase
      * @runInSeparateProcess
      */
     public function testYearlyFullDayTimeZoneBerlin() {
-        $checks = [
-            ['index' => 0, 'dateString' => '20000301', 'message' => '1st event, CET: '],
-            ['index' => 1, 'dateString' => '20010301T000000', 'message' => '2nd event, CET: '],
-            ['index' => 2, 'dateString' => '20020301T000000', 'message' => '3rd event, CET: '],
-        ];
+        $checks = array(
+            array('index' => 0, 'dateString' => '20000301', 'message' => '1st event, CET: '),
+            array('index' => 1, 'dateString' => '20010301T000000', 'message' => '2nd event, CET: '),
+            array('index' => 2, 'dateString' => '20020301T000000', 'message' => '3rd event, CET: '),
+        );
         $this->assertVEVENT(
             'Europe/Berlin',
             "DTSTART;VALUE=DATE:20000301",
@@ -30,11 +30,11 @@ class RecurrencesTest extends TestCase
      * @runInSeparateProcess
      */
     public function testMonthlyFullDayTimeZoneBerlin() {
-        $checks = [
-            ['index' => 0, 'dateString' => '20000301', 'message' => '1st event, CET: '],
-            ['index' => 1, 'dateString' => '20000401T000000', 'message' => '2nd event, CEST: '],
-            ['index' => 2, 'dateString' => '20000501T000000', 'message' => '3rd event, CEST: '],
-        ];
+        $checks = array(
+            array('index' => 0, 'dateString' => '20000301', 'message' => '1st event, CET: '),
+            array('index' => 1, 'dateString' => '20000401T000000', 'message' => '2nd event, CEST: '),
+            array('index' => 2, 'dateString' => '20000501T000000', 'message' => '3rd event, CEST: '),
+        );
         $this->assertVEVENT(
             'Europe/Berlin',
             "DTSTART;VALUE=DATE:20000301",
@@ -48,11 +48,11 @@ class RecurrencesTest extends TestCase
      * @runInSeparateProcess
      */
     public function testMonthlyFullDayTimeZoneBerlinSummerTime() {
-        $checks = [
-            ['index' => 0, 'dateString' => '20180701', 'message' => '1st event, CEST: '],
-            ['index' => 1, 'dateString' => '20180801T000000', 'message' => '2nd event, CEST: '],
-            ['index' => 2, 'dateString' => '20180901T000000', 'message' => '3rd event, CEST: '],
-        ];
+        $checks = array(
+            array('index' => 0, 'dateString' => '20180701', 'message' => '1st event, CEST: '),
+            array('index' => 1, 'dateString' => '20180801T000000', 'message' => '2nd event, CEST: '),
+            array('index' => 2, 'dateString' => '20180901T000000', 'message' => '3rd event, CEST: '),
+        );
         $this->assertVEVENT(
             'Europe/Berlin',
             "DTSTART;VALUE=DATE:20180701",
@@ -66,11 +66,11 @@ class RecurrencesTest extends TestCase
      * @runInSeparateProcess
      */
     public function testMonthlyFullDayTimeZoneBerlinFromFile() {
-        $checks = [
-            ['index' => 0, 'dateString' => '20180701', 'message' => '1st event, CEST: '],
-            ['index' => 1, 'dateString' => '20180801T000000', 'message' => '2nd event, CEST: '],
-            ['index' => 2, 'dateString' => '20180901T000000', 'message' => '3rd event, CEST: '],
-        ];
+        $checks = array(
+            array('index' => 0, 'dateString' => '20180701', 'message' => '1st event, CEST: '),
+            array('index' => 1, 'dateString' => '20180801T000000', 'message' => '2nd event, CEST: '),
+            array('index' => 2, 'dateString' => '20180901T000000', 'message' => '3rd event, CEST: '),
+        );
         $this->assertEventFile(
             'Europe/Berlin',
             "./tests/icalmonthly.txt",
@@ -82,14 +82,14 @@ class RecurrencesTest extends TestCase
      * @runInSeparateProcess
      */
     public function testWeeklyFullDayTimeZoneBerlin() {
-        $checks = [
-            ['index' => 0, 'dateString' => '20000301', 'message' => '1st event, CET: '],
-            ['index' => 1, 'dateString' => '20000308T000000', 'message' => '2nd event, CET: '],
-            ['index' => 2, 'dateString' => '20000315T000000', 'message' => '3rd event, CET: '],
-            ['index' => 3, 'dateString' => '20000322T000000', 'message' => '4th event, CET: '],
-            ['index' => 4, 'dateString' => '20000329T000000', 'message' => '5th event, CEST: '],
-            ['index' => 5, 'dateString' => '20000405T000000', 'message' => '6th event, CEST: '],
-        ];
+        $checks = array(
+            array('index' => 0, 'dateString' => '20000301', 'message' => '1st event, CET: '),
+            array('index' => 1, 'dateString' => '20000308T000000', 'message' => '2nd event, CET: '),
+            array('index' => 2, 'dateString' => '20000315T000000', 'message' => '3rd event, CET: '),
+            array('index' => 3, 'dateString' => '20000322T000000', 'message' => '4th event, CET: '),
+            array('index' => 4, 'dateString' => '20000329T000000', 'message' => '5th event, CEST: '),
+            array('index' => 5, 'dateString' => '20000405T000000', 'message' => '6th event, CEST: '),
+        );
         $this->assertVEVENT(
             'Europe/Berlin',
             "DTSTART;VALUE=DATE:20000301",
@@ -103,11 +103,11 @@ class RecurrencesTest extends TestCase
      * @runInSeparateProcess
      */
     public function testDailyFullDayTimeZoneBerlin() {
-        $checks = [
-            ['index' => 0, 'dateString' => '20000301', 'message' => '1st event, CET: '],
-            ['index' => 1, 'dateString' => '20000302T000000', 'message' => '2nd event, CET: '],
-            ['index' => 30, 'dateString' => '20000331T000000', 'message' => '31st event, CEST: '],
-        ];
+        $checks = array(
+            array('index' => 0, 'dateString' => '20000301', 'message' => '1st event, CET: '),
+            array('index' => 1, 'dateString' => '20000302T000000', 'message' => '2nd event, CET: '),
+            array('index' => 30, 'dateString' => '20000331T000000', 'message' => '31st event, CEST: '),
+        );
         $this->assertVEVENT(
             'Europe/Berlin',
             "DTSTART;VALUE=DATE:20000301",
@@ -121,14 +121,14 @@ class RecurrencesTest extends TestCase
      * @runInSeparateProcess
      */
     public function testWeeklyFullDayTimeZoneBerlinLocal() {
-        $checks = [
-            ['index' => 0, 'dateString' => '20000301T000000', 'message' => '1st event, CET: '],
-            ['index' => 1, 'dateString' => '20000308T000000', 'message' => '2nd event, CET: '],
-            ['index' => 2, 'dateString' => '20000315T000000', 'message' => '3rd event, CET: '],
-            ['index' => 3, 'dateString' => '20000322T000000', 'message' => '4th event, CET: '],
-            ['index' => 4, 'dateString' => '20000329T000000', 'message' => '5th event, CEST: '],
-            ['index' => 5, 'dateString' => '20000405T000000', 'message' => '6th event, CEST: '],
-        ];
+        $checks = array(
+            array('index' => 0, 'dateString' => '20000301T000000', 'message' => '1st event, CET: '),
+            array('index' => 1, 'dateString' => '20000308T000000', 'message' => '2nd event, CET: '),
+            array('index' => 2, 'dateString' => '20000315T000000', 'message' => '3rd event, CET: '),
+            array('index' => 3, 'dateString' => '20000322T000000', 'message' => '4th event, CET: '),
+            array('index' => 4, 'dateString' => '20000329T000000', 'message' => '5th event, CEST: '),
+            array('index' => 5, 'dateString' => '20000405T000000', 'message' => '6th event, CEST: '),
+        );
         $this->assertVEVENT(
             'Europe/Berlin',
             "DTSTART;TZID=Europe/Berlin:20000301T000000",
@@ -143,11 +143,11 @@ class RecurrencesTest extends TestCase
      */
     public function testRFCDaily10NewYork() {
         // (1997 9:00 AM EDT)September 2-11
-        $checks = [
-            ['index' => 0, 'dateString' => '19970902T090000', 'timezone' => 'America/New_York', 'message' => '1st event, EDT: '],
-            ['index' => 1, 'dateString' => '19970903T090000', 'timezone' => 'America/New_York', 'message' => '2nd event, EDT: '],
-            ['index' => 9, 'dateString' => '19970911T090000', 'timezone' => 'America/New_York', 'message' => '10th event, EDT: '],
-        ];
+        $checks = array(
+            array('index' => 0, 'dateString' => '19970902T090000', 'timezone' => 'America/New_York', 'message' => '1st event, EDT: '),
+            array('index' => 1, 'dateString' => '19970903T090000', 'timezone' => 'America/New_York', 'message' => '2nd event, EDT: '),
+            array('index' => 9, 'dateString' => '19970911T090000', 'timezone' => 'America/New_York', 'message' => '10th event, EDT: '),
+        );
         $this->assertVEVENT(
             'Europe/Berlin',
             "DTSTART;TZID=America/New_York:19970902T090000",
@@ -162,11 +162,11 @@ class RecurrencesTest extends TestCase
      */
     public function testRFCDaily10Berlin() {
         // (1997 9:00 AM CEST)September 2-11
-        $checks = [
-            ['index' => 0, 'dateString' => '19970902T090000', 'timezone' => 'Europe/Berlin', 'message' => '1st event, CEST: '],
-            ['index' => 1, 'dateString' => '19970903T090000', 'timezone' => 'Europe/Berlin', 'message' => '2nd event, CEST: '],
-            ['index' => 9, 'dateString' => '19970911T090000', 'timezone' => 'Europe/Berlin', 'message' => '10th event, CEST: '],
-        ];
+        $checks = array(
+            array('index' => 0, 'dateString' => '19970902T090000', 'timezone' => 'Europe/Berlin', 'message' => '1st event, CEST: '),
+            array('index' => 1, 'dateString' => '19970903T090000', 'timezone' => 'Europe/Berlin', 'message' => '2nd event, CEST: '),
+            array('index' => 9, 'dateString' => '19970911T090000', 'timezone' => 'Europe/Berlin', 'message' => '10th event, CEST: '),
+        );
         $this->assertVEVENT(
             'Europe/Berlin',
             "DTSTART;TZID=Europe/Berlin:19970902T090000",
@@ -181,11 +181,11 @@ class RecurrencesTest extends TestCase
      */
     public function testRFCDaily10BerlinFromNewYork() {
         // (1997 9:00 AM CEST)September 2-11
-        $checks = [
-            ['index' => 0, 'dateString' => '19970902T090000', 'timezone' => 'Europe/Berlin', 'message' => '1st event, CEST: '],
-            ['index' => 1, 'dateString' => '19970903T090000', 'timezone' => 'Europe/Berlin', 'message' => '2nd event, CEST: '],
-            ['index' => 9, 'dateString' => '19970911T090000', 'timezone' => 'Europe/Berlin', 'message' => '10th event, CEST: '],
-        ];
+        $checks = array(
+            array('index' => 0, 'dateString' => '19970902T090000', 'timezone' => 'Europe/Berlin', 'message' => '1st event, CEST: '),
+            array('index' => 1, 'dateString' => '19970903T090000', 'timezone' => 'Europe/Berlin', 'message' => '2nd event, CEST: '),
+            array('index' => 9, 'dateString' => '19970911T090000', 'timezone' => 'Europe/Berlin', 'message' => '10th event, CEST: '),
+        );
         $this->assertVEVENT(
             'America/New_York',
             "DTSTART;TZID=Europe/Berlin:19970902T090000",
